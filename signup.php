@@ -1,7 +1,8 @@
 <?php include("top.html"); ?>
-<?php ini_set('error_reporting', 0) ?>
+<?php ini_set('error_reporting', 0); ?>
+<?php ini_set('file_upload') ?>
 
-<form name="signup" action="signup-submit.php" method="POST">
+<form name="signup" action="signup-submit.php" method="POST" enctype="multipart/form-data">
 
 	<fieldset>
 		<legend>New User Sign up</legend>
@@ -35,7 +36,9 @@
 			<input type="text" name="min-age" size="6" placeholder="min" maxlength="2"> to 
 			<input type="text" name="max-age" size="6" placeholder="max" maxlength="2">
 		</p>
-
+		<p>
+			<input type="file" name="user_img">
+		</p>
 		<input type="submit" value="Sign up">
 	</fieldset>
 </form>
