@@ -20,7 +20,7 @@
 		</p>
 		<p>
 			<label><strong>Personality Type:</strong></label>
-			<input type="text" name="type" size="6" maxlength="4">&nbsp;(<a href="http://www.humanmetrics.com/cgi-win/jtypes2.asp">Don't know your type?</a>)
+			<input type="text" name="ptype" size="6" maxlength="4">&nbsp;(<a href="http://www.humanmetrics.com/cgi-win/jtypes2.asp">Don't know your type?</a>)
 		</p>
 		<p>
 			<label class="left"><strong>Favorite OS:</strong></label>
