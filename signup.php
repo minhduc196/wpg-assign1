@@ -2,7 +2,7 @@
 <?php ini_set('error_reporting', 0); ?>
 <?php ini_set('file_upload') ?>
 
-<form name="signup" action="signup-submit.php" method="POST" enctype="multipart/form-data">
+<form name="signup" action="<?php echo htmlentities("signup-submit.php"); ?>" method="POST" enctype="multipart/form-data">
 
 	<fieldset>
 		<legend>New User Sign up</legend>

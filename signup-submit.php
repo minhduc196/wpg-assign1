@@ -4,13 +4,13 @@
 	header("Location: signup.php");
 	} ?>
 <?php if(isset($_POST['name']) && !empty($_POST['name'])) {
-		$user_name = $_POST['name'];
-		$user_gender = $_POST['gender'];
-		$user_age = $_POST['age'];
-		$user_ptype = $_POST['ptype'];
-		$user_os = $_POST['os'];
-		$user_min_age = $_POST['min-age'];
-		$user_max_age = $_POST['max-age'];
+		$user_name = htmlentities($_POST['name']);
+		$user_gender = htmlentities($_POST['gender']);
+		$user_age = htmlentities($_POST['age']);
+		$user_ptype = htmlentities($_POST['ptype']);
+		$user_os = htmlentities($_POST['os']);
+		$user_min_age = htmlentities($_POST['min-age']);
+		$user_max_age = htmlentities($_POST['max-age']);
 		$detail = "";
 		$user_ptype_uc = strtoupper($user_ptype);
 		if(!preg_match("/[a-z^A-Z]/", $user_name)) {
@@ -62,7 +62,7 @@
 	
 	<?php 
 		//write data to file singles.txtt
-		fopen("singles.txt", "r+");
+		fopen("singles.txt", "w");
 		// fopen("test.txt", "r+");
 		$txt = $user_name . "," . $user_gender . "," . $user_age . "," 
 		. $user_ptype . "," . $user_os . "," . $user_min_age . "," . $user_max_age . "\r\n";
