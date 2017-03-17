@@ -51,24 +51,54 @@
 	} else {
 		echo "<a href=\"signup.php\">Go back</a><br>";
 		die("All field must be filled");
-		} ?>
+	}; ?>
+
 
 <div>
 	<strong>Thank you</strong><br>
 	<p>Welcome to NerdLuv, <?php echo $user_name ?></p>
 	<p>Now <a href="matches.php">log in to see your matches.</a></p>
 
-	<span style="color: red"><?= $detail?></span>
-	
+	<span style="color: red"><?= $detail?></span><br>
+
 	<?php 
-		//write data to file singles.txtt
-		fopen("singles.txt", "w");
+	$upload_file_name = $_FILES['user_img']['name'];
+	$upload_file_type = $_FILES['user_img']['type'];
+	$upload_file_size = $_FILES['user_img']['size'];
+	$upload_file_extension = substr($upload_file_name,strpos($upload_file_name,'.') + 1);
+	$storage_file_name = $user_name.rand(10000,50000).md5($upload_file_name).rand(10000,50000).'.'.$upload_file_extension;
+	$tmp_upload_file_name = $_FILES['user_img']['tmp_name'];
+	$location = 'img/';
+	$file_type = 'image/jpeg';
+	
+	if(isset($upload_file_name)) {
+		if((($upload_file_extension=='jpg') || ($upload_file_extension=='jpeg'))
+			&& ($upload_file_type=='image/jpeg')) {
+			move_uploaded_file($tmp_upload_file_name,$location.$storage_file_name);
+			echo "Uploaded";
+		} else {
+			echo "No File uploaded.";
+		}
+	}; 
+	 ?>
+	
+	<?php
+		$file_name = "singles.txt"; 
+		if(file_exists($file_name)) {
+
+		// write data to file singles.txt
+		$openFile = fopen($file_name, "a");
 		// fopen("test.txt", "r+");
 		$txt = $user_name . "," . $user_gender . "," . $user_age . "," 
 		. $user_ptype . "," . $user_os . "," . $user_min_age . "," . $user_max_age . "\r\n";
-		file_put_contents("singles.txt", $txt, FILE_APPEND);
-		fclose("singles.txt");		
+		fwrite($openFile, $txt);
+		fclose($openFile);	
+		echo "File written";	
+	} else {
+		echo "File not exist to write.";
+	}
 	?>
+	
 </div>
 
 <?php include("bottom.html"); ?>
