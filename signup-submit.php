@@ -65,8 +65,9 @@
 	$upload_file_name = $_FILES['user_img']['name'];
 	$upload_file_type = $_FILES['user_img']['type'];
 	$upload_file_size = $_FILES['user_img']['size'];
+	$user_name_file = preg_replace('/\s+/', '', $user_name);
 	$upload_file_extension = substr($upload_file_name,strpos($upload_file_name,'.') + 1);
-	$storage_file_name = $user_name.rand(10000,50000).md5($upload_file_name).rand(10000,50000).'.'.$upload_file_extension;
+	$storage_file_name = strtolower($user_name_file)."-".rand(10000,50000).md5($upload_file_name).rand(10000,50000).'.'.$upload_file_extension;
 	$tmp_upload_file_name = $_FILES['user_img']['tmp_name'];
 	$location = 'img/';
 	$file_type = 'image/jpeg';
@@ -75,7 +76,6 @@
 		if((($upload_file_extension=='jpg') || ($upload_file_extension=='jpeg'))
 			&& ($upload_file_type=='image/jpeg')) {
 			move_uploaded_file($tmp_upload_file_name,$location.$storage_file_name);
-			echo "Uploaded";
 		} else {
 			echo "No File uploaded.";
 		}
