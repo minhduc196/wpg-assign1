@@ -12,6 +12,10 @@ if(file_exists($file_name)) {
 		list($name, $gender, $age, $ptype, $os, $min_age, $max_age) = explode(',',$line);
 		if($user_name == $name) {
 			$info = $line;
+			$found = true;
+			break;
+		} else {
+			$found = false;
 		}
 	}
 } 
@@ -38,13 +42,16 @@ if(file_exists($file_name)) {
 			$dir = "img";
 		$loadFolder = opendir($dir.'/');
 		$user_image = preg_replace('/\s+/', '', $name);
-		$user_image_lc = strtolower($user_image);
+		$user_image_lc = md5(strtolower($user_image));
 		$file = scandir($dir);
 		$check = false;
 		foreach ($file as $match_image) {
-			if($user_image_lc == substr($match_image, 0, strlen($user_image_lc))) {
+			if($user_image_lc == substr($match_image, 5, strlen($user_image_lc))) {
 				$avatar = $match_image;
 				$check = true;
+				break;
+			} else {
+				$check = false;
 			}
 		}
 		if(!$check) {
