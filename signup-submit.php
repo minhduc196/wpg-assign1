@@ -53,22 +53,7 @@
 		die("All field must be filled");
 	}; ?>
 
-	<?php $file_name = "singles.txt";
-	$user_name = $_GET['name'];
-	$handle = file($file_name);
-	if(file_exists($file_name)) {
-	foreach ($handle as $line) {
-		list($name, $gender, $age, $ptype, $os, $min_age, $max_age) = explode(',',$line);
-		if($user_name == $name) {
-			$found = true;
-			break;
-		} else {
-			$found = false;
-		}
-	} if($found = true) {
-		die('Name already exist.');
-	}
-}  ?>
+	
 
 <div>
 	<strong>Thank you</strong><br>
@@ -81,6 +66,7 @@
 	$upload_file_name = $_FILES['user_img']['name'];
 	$upload_file_type = $_FILES['user_img']['type'];
 	$upload_file_size = $_FILES['user_img']['size'];
+	$upload_file_max_size = 2000000;
 	$user_name_file = preg_replace('/\s+/', '', $user_name);
 	$upload_file_extension = substr($upload_file_name,strpos($upload_file_name,'.') + 1);
 	$storage_file_name = rand(10000,50000).md5(strtolower($user_name_file)).rand(10000,50000).'.'.$upload_file_extension;
@@ -90,7 +76,7 @@
 	
 	if(isset($upload_file_name)) {
 		if((($upload_file_extension=='jpg') || ($upload_file_extension=='jpeg'))
-			&& ($upload_file_type=='image/jpeg')) {
+			&& ($upload_file_type=='image/jpeg') && ($upload_file_size < $upload_file_max_size)) {
 			move_uploaded_file($tmp_upload_file_name,$location.$storage_file_name);
 		} else {
 			echo "No File uploaded.";
@@ -104,7 +90,7 @@
 
 		// write data to file singles.txt
 		$openFile = fopen($file_name, "a");
-		// fopen("test.txt", "r+");
+		 fopen("test.txt", "r+");
 		$txt = $user_name . "," . $user_gender . "," . $user_age . "," 
 		. $user_ptype . "," . $user_os . "," . $user_min_age . "," . $user_max_age . "\r\n";
 		fwrite($openFile, $txt);
