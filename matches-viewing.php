@@ -26,6 +26,7 @@ if(file_exists($file_name)) {
 	
 	<?php 
 		//compare data to get matches
+	if($found) {
 		$info_array = explode(",", $info);
 		$person_gender = $info_array[1];
 		$person_age = $info_array[2];
@@ -69,7 +70,9 @@ if(file_exists($file_name)) {
 			<li><strong>OS:</strong><?php echo $os; ?></li>
 		</ul>
 	</div>
-<?php }} ?>
+<?php }}} else {
+	echo "<br><strong>Username not found</strong>";
+	} ?>
 </div>
 
 <?php include("bottom.html"); ?>
