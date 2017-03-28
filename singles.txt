@@ -52,3 +52,5 @@ Yukihiro Matsumoto,M,45,ENTP,Mac OS X,10,25
 Zelda,F,59,ESTP,Windows,40,62
 Duc Minh,M,22,ENTJ,Windows,2,99
 Sky,M,23,ENTJ,Windows,1,99
+MTP,M,23,ESTF,Windows,1,99
+MTP,M,23,ESTF,Windows,1,99
