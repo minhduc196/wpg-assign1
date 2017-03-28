@@ -1,6 +1,5 @@
 <?php include("top.html"); ?>
-<?php #ini_set('error_reporting', 0) ?>
-<?php include('common.php'); ?>
+<?php ini_set('error_reporting', 0) ?>
 <?php if(empty($_GET['name'])) {
 	header("Location: matches.php");
 	} ?>
@@ -88,7 +87,7 @@ if(file_exists($file_name)) {
 		</ul>
 	</div>
 	<?php
-	}	} else { echo $err;} ?>
+	}	} else { echo $err . " <a href=\"matches.php\">Go Back</a>";} ?>
 </div>
 
 <?php include("bottom.html"); ?>

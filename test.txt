@@ -1,3 +1,0 @@
-River Tam,F,26,ENTJ,Linux,18,25
-Roberta Williams,F,57,ENFP,Windows,54,67
-Rosie O Donnell,F,46,ENFJ,Windows,30,50
